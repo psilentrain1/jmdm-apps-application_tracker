@@ -7,6 +7,8 @@ const mockApp = {
   id: 0,
   title: "Junior Developer",
   company: "Some Random Software Company",
+  location: "Richmond, VA",
+  type: "Remote",
   industry: "IT",
   status: "Applied",
   applyDate: "2024-12-15",
@@ -43,30 +45,9 @@ export function Applications() {
             <div className="applist-item__date__title">Date Applied:</div>
             <div className="applist-item__date__date">{mockApp["applyDate"]}</div>
           </div>
-          <div className="applist-item__notes">{mockApp["notes"]}</div>
-          <div className="applist-item__buttons">
-            <Link to="">
-              <HiPencil />
-            </Link>
-            <Link to="">
-              <HiTrash />
-            </Link>
-          </div>
-        </div>
-        {/* End App list item */}
-
-        {/* App list item */}
-        <div className="applist-item">
-          <div className="applist-item__info">
-            <div className="applist-item__info__title">
-              <Link to="">{mockApp["title"]}</Link>
-            </div>
-            <div className="applist-item__info__company">{mockApp["company"]}</div>
-          </div>
-          <div className="applist-item__status reject">{mockApp["status"]}</div>
-          <div className="applist-item__date">
-            <div className="applist-item__date__title">Date Applied:</div>
-            <div className="applist-item__date__date">{mockApp["applyDate"]}</div>
+          <div className="applist-item__location">
+            <div className="applist-item__location__type">{mockApp["type"]}</div>
+            <div className="applist-item__location__city">{mockApp["location"]}</div>
           </div>
           <div className="applist-item__notes">{mockApp["notes"]}</div>
           <div className="applist-item__buttons">

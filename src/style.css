@@ -51,6 +51,7 @@
   --txt-black: var(--clr-primary-950);
 
   --link-focus: 2px solid var(--clr-secondary-400);
+  --link-hover: var(--clr-primary-600);
 
   /* sizes */
   --radius: 3px;
@@ -240,7 +241,7 @@ footer a {
 }
 
 footer a:hover {
-  color: var(--clr-primary-900);
+  color: var(--link-hover);
 }
 /* -------- */
 
@@ -312,7 +313,7 @@ footer a:hover {
 }
 
 .applist-item__info__title a:hover {
-  color: var(--clr-primary-600);
+  color: var(--link-hover);
 }
 
 .applist-item__info__company {
@@ -325,7 +326,7 @@ footer a:hover {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  min-width: 150px;
   margin: 10px 20px;
   border-radius: var(--radius);
   font-size: 1.5rem;
@@ -366,6 +367,24 @@ footer a:hover {
   font-weight: bold;
 }
 
+.applist-item__location {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 150px;
+  padding: 0 10px;
+}
+
+.applist-item__location__type {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.applist-item__location__city {
+  font-size: 0.8rem;
+}
+
 .applist-item__notes {
   display: flex;
   flex-direction: column;
@@ -391,7 +410,7 @@ footer a:hover {
 }
 
 .applist-item__buttons a:hover {
-  color: var(--clr-primary-600);
+  color: var(--link-hover);
 }
 
 /* -------- */
