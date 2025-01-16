@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variables */
+:root {
+  --clr-primary-50: #eff9ff;
+  --clr-primary-100: #dbf0fe;
+  --clr-primary-200: #bfe5fe;
+  --clr-primary-300: #93d6fd;
+  --clr-primary-400: #60bdfa;
+  --clr-primary-500: #3c9ff5;
+  --clr-primary-600: #2c86eb;
+  --clr-primary-700: #1e6bd7;
+  --clr-primary-800: #1e57af;
+  --clr-primary-900: #1e4b8a;
+  --clr-primary-950: #172f54;
+
+  --txt-white: var(--clr-primary-100);
+  --txt-black: var(--clr-primary-950);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -28,10 +46,11 @@ main {
   flex-direction: column;
 }
 
+/* sidebar */
 .sidebar {
   height: 100%;
   width: 250px;
-  border: 1px solid orange;
+  background-color: var(--clr-primary-950);
 }
 
 .title {
@@ -39,7 +58,14 @@ main {
   font-weight: bold;
   text-align: center;
   padding: 20px 10px;
-  border: 1px solid green;
+  color: var(--txt-white);
+}
+
+.links {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 nav {
@@ -52,14 +78,31 @@ nav a {
   font-size: 1.2rem;
   text-decoration: none;
   padding: 10px 20px;
-  border: 1px solid aqua;
+  color: var(--txt-white);
+  transition: color 0.3s ease;
 }
 
-/* This will become the style for the active link */
-nav a:first-child {
-  border-left: 8px solid blue;
+nav a:hover {
+  color: var(--clr-primary-300);
+}
+
+nav a:active {
+  color: var(--clr-primary-500);
+}
+
+[aria-current="page"] {
+  border-left: 8px solid var(--clr-primary-300);
   padding-left: 12px;
 }
+
+.userinfo {
+  height: 75px;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: var(--txt-white);
+  border-top: 1px solid var(--txt-white);
+}
+/* -------- */
 
 header {
   display: flex;
@@ -67,6 +110,11 @@ header {
   height: 40px;
   width: 100%;
   border: 1px solid blue;
+}
+
+.search {
+  text-align: center;
+  width: 85%;
 }
 
 .content {
