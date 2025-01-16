@@ -283,7 +283,6 @@ footer a:hover {
 .applist {
   width: 100%;
   overflow: scroll;
-  border: 1px solid pink;
 }
 
 .applist-item {
