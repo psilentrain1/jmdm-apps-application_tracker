@@ -2,8 +2,13 @@ export function Header() {
   return (
     <>
       <header>
-        <div style={{ width: "85%", textAlign: "center" }}>Search in the middle</div>
-        <div>Add button</div>
+        <div className="search" style={{ width: "85%", textAlign: "center" }}>
+          <form action="">
+            <input type="search" name="search" id="search" />
+            <input type="button" value="search" />
+          </form>
+        </div>
+        <button type="button">+ Add</button>
       </header>
     </>
   );
