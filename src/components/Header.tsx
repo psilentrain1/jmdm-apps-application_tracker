@@ -1,14 +1,23 @@
+import { HiOutlineBell, HiPlus, HiSearch } from "react-icons/hi";
+
 export function Header() {
   return (
     <>
       <header>
-        <div className="search" style={{ width: "85%", textAlign: "center" }}>
+        <div className="search">
           <form action="">
-            <input type="search" name="search" id="search" />
-            <input type="button" value="search" />
+            <input type="search" name="search" id="search" placeholder="Search..." />
+            <HiSearch />
           </form>
         </div>
-        <button type="button">+ Add</button>
+        <div className="buttons">
+          <button type="button">
+            <HiOutlineBell />
+          </button>
+          <button type="button">
+            <HiPlus />
+          </button>
+        </div>
       </header>
     </>
   );
