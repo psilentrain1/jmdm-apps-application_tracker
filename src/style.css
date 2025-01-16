@@ -29,12 +29,21 @@
   --clr-secondary-900: #822d0c;
   --clr-secondary-950: #461404;
 
+  --clr-gray-50: #efefef;
   --clr-gray-100: #e5e4e2;
   --clr-gray-200: #d3d3d3;
   --clr-gray-300: #c0c0c0;
   --clr-gray-500: #848884;
   --clr-gray-600: #808080;
   --clr-gray-900: #36454f;
+
+  --clr-success: #198754;
+  --clr-success-subtle: color-mix(in srgb, var(--clr-success) 40%, transparent);
+  --clr-warning: #ffc107;
+  --clr-warning-subtle: color-mix(in srgb, var(--clr-warning) 40%, transparent);
+  --clr-danger: #dc3545;
+  --clr-danger-subtle: color-mix(in srgb, var(--clr-danger) 40%, transparent);
+  --clr-info: #0dcaf0;
 
   --bg-dark: var(--clr-primary-950);
 
@@ -235,6 +244,134 @@ footer a:hover {
 }
 /* -------- */
 
+/* content */
 .content {
-  padding: 20px 50px;
+  margin: 10px;
+  /* padding: 20px 50px; */
+  padding: 20px 0;
+  background-color: var(--clr-gray-50);
 }
+/* -------- */
+
+/* PAGES */
+/* dashboard */
+
+/* -------- */
+
+/* applications */
+.applist {
+  width: 100%;
+  overflow: scroll;
+  border: 1px solid pink;
+}
+
+.applist-item {
+  display: flex;
+  flex-direction: row;
+  height: 75px;
+  padding: 0 20px;
+  background-color: white;
+  border: 1px solid var(--clr-gray-900);
+}
+
+.applist-item__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  min-width: 350px;
+}
+
+.applist-item__info__title,
+.applist-item__info__title a,
+.applist-item__info__title a:visited {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--txt-black);
+  transition: color 0.3s ease;
+}
+
+.applist-item__info__title a:hover {
+  color: var(--clr-primary-600);
+}
+
+.applist-item__info__company {
+  font-size: 0.9rem;
+  color: var(--clr-gray-500);
+}
+
+.applist-item__status {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  margin: 10px 20px;
+  border-radius: var(--radius);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.applied {
+  color: var(--txt-black);
+  background-color: white;
+}
+
+.interviewing {
+  color: var(--txt-white);
+  background-color: var(--clr-success);
+}
+
+.reject {
+  color: var(--txt-white);
+  background-color: var(--clr-danger);
+}
+
+.applist-item__date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.applist-item__date__title {
+  font-size: 0.9rem;
+  color: var(--clr-gray-500);
+  margin-bottom: 5px;
+}
+
+.applist-item__date__date {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.applist-item__notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 20px;
+  text-overflow: ellipsis;
+}
+
+.applist-item__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+
+.applist-item__buttons a,
+.applist-item__buttons a:visited {
+  font-size: 2rem;
+  color: var(--txt-black);
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.applist-item__buttons a:hover {
+  color: var(--clr-primary-600);
+}
+
+/* -------- */
