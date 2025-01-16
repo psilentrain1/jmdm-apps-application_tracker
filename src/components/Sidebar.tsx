@@ -1,3 +1,7 @@
 export function Sidebar() {
-  return <></>;
+  return (
+    <>
+      <section className="sidebar"></section>
+    </>
+  );
 }

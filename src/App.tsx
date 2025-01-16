@@ -7,12 +7,16 @@ import "./style.css";
 function App() {
   return (
     <>
-      <div>Test html.</div>
-
-      {/* <Header />
-      <Sidebar />
-      <Outlet />
-      <Footer /> */}
+      <main>
+        <Sidebar />
+        <section className="mainRight">
+          <Header />
+          <div className="content">
+            <Outlet />
+          </div>
+        </section>
+      </main>
+      <Footer />
     </>
   );
 }
