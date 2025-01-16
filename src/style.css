@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables */
+:root {
+  /* colors */
+  --clr-primary-50: #eff9ff;
+  --clr-primary-100: #dbf0fe;
+  --clr-primary-200: #bfe5fe;
+  --clr-primary-300: #93d6fd;
+  --clr-primary-400: #60bdfa;
+  --clr-primary-500: #3c9ff5;
+  --clr-primary-600: #2c86eb;
+  --clr-primary-700: #1e6bd7;
+  --clr-primary-800: #1e57af;
+  --clr-primary-900: #1e4b8a;
+  --clr-primary-950: #172f54;
+
+  --clr-secondary-50: #fff7ec;
+  --clr-secondary-100: #ffeed3;
+  --clr-secondary-200: #ffd9a5;
+  --clr-secondary-300: #ffbe6d;
+  --clr-secondary-400: #ff9632;
+  --clr-secondary-500: #ff770a;
+  --clr-secondary-600: #ff5e00;
+  --clr-secondary-700: #cc4202;
+  --clr-secondary-800: #a1340b;
+  --clr-secondary-900: #822d0c;
+  --clr-secondary-950: #461404;
+
+  --clr-gray-100: #e5e4e2;
+  --clr-gray-200: #d3d3d3;
+  --clr-gray-300: #c0c0c0;
+  --clr-gray-500: #848884;
+  --clr-gray-600: #808080;
+  --clr-gray-900: #36454f;
+
+  --bg-dark: var(--clr-primary-950);
+
+  --txt-white: var(--clr-primary-100);
+  --txt-black: var(--clr-primary-950);
+
+  --link-focus: 2px solid var(--clr-secondary-400);
+
+  /* sizes */
+  --radius: 3px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 30px);
+}
+
+.mainRight {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* UI */
+
+/* sidebar */
+.sidebar {
+  height: 100%;
+  width: 250px;
+  background-color: var(--bg-dark);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 2.5rem;
+  text-align: center;
+  padding: 20px 10px;
+  color: var(--txt-white);
+}
+
+.links {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+nav a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 10px 20px;
+  color: var(--txt-white);
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--clr-primary-300);
+}
+
+nav a:active {
+  color: var(--clr-primary-500);
+}
+
+nav a:focus-visible {
+  outline: var(--link-focus);
+}
+
+[aria-current="page"] {
+  border-left: 8px solid var(--clr-primary-300);
+  padding-left: 12px;
+}
+
+.userinfo {
+  height: 75px;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: var(--txt-white);
+  border-top: 1px solid var(--txt-white);
+}
+/* -------- */
+
+/* header */
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  background-color: var(--bg-dark);
+}
+
+.search {
+  text-align: center;
+  width: 85%;
+}
+
+.search form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search input {
+  height: 30px;
+  width: 350px;
+  border-radius: var(--radius);
+  padding: 5px 10px;
+}
+
+.search input:focus-visible {
+  outline: var(--link-focus);
+}
+
+.search svg {
+  font-size: 1.5rem;
+  transform: translateX(-50px);
+  color: var(--clr-gray-500);
+}
+
+header .buttons {
+  position: fixed;
+  color: var(--txt-white);
+  margin-right: 40px;
+  right: 0;
+}
+
+header button {
+  background: none;
+  border: none;
+  color: var(--txt-white);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+header button:hover {
+  color: var(--clr-primary-300);
+}
+
+header button:active {
+  color: var(--clr-primary-500);
+}
+
+header button:focus-visible {
+  outline: var(--link-focus);
+}
+
+header svg {
+  font-size: 1.8rem;
+  margin: 0 10px;
+}
+
+/* -------- */
+
+/* footer */
+footer {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 30px;
+  bottom: 0;
+  background-image: linear-gradient(var(--clr-gray-200) 0%, var(--clr-gray-100) 35%, var(--clr-gray-200) 100%);
+  color: var(--txt-black);
+}
+
+footer a {
+  color: var(--txt-black);
+  padding-left: 10px;
+}
+
+footer a:hover {
+  color: var(--clr-primary-900);
+}
+/* -------- */
+
+.content {
+  padding: 20px 50px;
+}
