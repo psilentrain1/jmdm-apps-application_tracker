@@ -259,6 +259,26 @@ footer a:hover {
 /* -------- */
 
 /* applications */
+.filters {
+  display: flex;
+  flex-direction: row;
+  padding: 0 20px 5px 20px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--txt-black);
+}
+
+.sort {
+  margin-right: 20px;
+}
+
+.filters span {
+  margin-right: 5px;
+}
+
+.filters select {
+  margin-right: 5px;
+}
+
 .applist {
   width: 100%;
   overflow: scroll;

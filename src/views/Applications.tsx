@@ -18,7 +18,17 @@ const mockApp = {
 export function Applications() {
   return (
     <>
-      <div className="filters"></div>
+      <div className="filters">
+        <div className="sort">
+          <span>Sort by:</span>
+          <select name="appsort" id="appsort"></select>
+          <input type="checkbox" name="appsortdir" id="appsortdir" />
+        </div>
+        <div className="filter">
+          <span>Filter by:</span>
+          <select name="appfilter" id="appfilter"></select>
+        </div>
+      </div>
       <div className="applist">
         {/* App list item */}
         <div className="applist-item">
