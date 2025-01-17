@@ -4,32 +4,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { applicationData } from "../types/applications.types";
 
-// TODO: programatically change date field...if the status is interviewing, show interview date. If the status is rejected, show reject date.
-
-const mockApp = {
-  id: 0,
-  title: "Junior Developer",
-  company: "Some Random Software Company",
-  location: "Richmond, VA",
-  type: "Remote",
-  industry: "IT",
-  status: "Applied",
-  applyDate: "2024-12-15",
-  interviewDate: "",
-  rejectDate: "",
-  notes: "These are some notes about this job application.\nIt has line breaks!",
-};
-
 export function Applications() {
   const [appList, setAppList] = useState<applicationData>({});
   const [appTable, setAppTable] = useState([]);
 
   function populateTable() {
     const applicationElements = [];
-    console.log(appList);
 
-    for (let idx in appList) {
-      console.log(appList[idx]);
+    for (const idx in appList) {
       applicationElements.push(createAppItem(appList[idx]));
     }
     setAppTable(applicationElements);
