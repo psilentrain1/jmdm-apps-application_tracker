@@ -1,7 +1,8 @@
 import { Link } from "react-router";
 import { HiPencil, HiTrash } from "react-icons/hi";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { applicationData } from "../types/applications.types";
 
 // TODO: programatically change date field...if the status is interviewing, show interview date. If the status is rejected, show reject date.
 
@@ -20,11 +21,60 @@ const mockApp = {
 };
 
 export function Applications() {
+  const [appList, setAppList] = useState<applicationData>({});
+  const [appTable, setAppTable] = useState([]);
+
+  function populateTable() {
+    const applicationElements = [];
+    console.log(appList);
+
+    for (let idx in appList) {
+      console.log(appList[idx]);
+      applicationElements.push(createAppItem(appList[idx]));
+    }
+    setAppTable(applicationElements);
+  }
+
+  function createAppItem(app: applicationData) {
+    return (
+      <div className="applist-item" key={app.id}>
+        <div className="applist-item__info">
+          <div className="applist-item__info__title">
+            <Link to={`/application/${app.id}`}>{app.title}</Link>
+          </div>
+          <div className="applist-item__info__company">{app.company}</div>
+        </div>
+        <div className={`applist-item__status ${app.status}`}>{app.status}</div>
+        <div className="applist-item__date">
+          <div className="applist-item__date__title">Date Applied:</div>
+          <div className="applist-item__date__date">{app.apply_date}</div>
+        </div>
+        <div className="applist-item__location">
+          <div className="applist-item__location__type">{app.type}</div>
+          <div className="applist-item__location__city">{app.location}</div>
+        </div>
+        <div className="applist-item__notes">{app.notes}</div>
+        <div className="applist-item__buttons">
+          <Link to={`/application/${app.id}`}>
+            <HiPencil />
+          </Link>
+          <Link to="">
+            <HiTrash />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   useEffect(() => {
     axios.get("http://localhost:3000/applications/").then(({ data }) => {
-      console.log(data);
+      setAppList(data);
     });
   }, []);
+
+  useEffect(() => {
+    populateTable();
+  }, [appList]);
   return (
     <>
       <div className="filters">
@@ -41,61 +91,7 @@ export function Applications() {
       </div>
       <div className="applist">
         {/* App list item */}
-        <div className="applist-item">
-          <div className="applist-item__info">
-            <div className="applist-item__info__title">
-              <Link to="">{mockApp["title"]}</Link>
-            </div>
-            <div className="applist-item__info__company">{mockApp["company"]}</div>
-          </div>
-          <div className="applist-item__status reject">{mockApp["status"]}</div>
-          <div className="applist-item__date">
-            <div className="applist-item__date__title">Date Applied:</div>
-            <div className="applist-item__date__date">{mockApp["applyDate"]}</div>
-          </div>
-          <div className="applist-item__location">
-            <div className="applist-item__location__type">{mockApp["type"]}</div>
-            <div className="applist-item__location__city">{mockApp["location"]}</div>
-          </div>
-          <div className="applist-item__notes">{mockApp["notes"]}</div>
-          <div className="applist-item__buttons">
-            <Link to="">
-              <HiPencil />
-            </Link>
-            <Link to="">
-              <HiTrash />
-            </Link>
-          </div>
-        </div>
-        {/* End App list item */}
-
-        {/* App list item */}
-        <div className="applist-item">
-          <div className="applist-item__info">
-            <div className="applist-item__info__title">
-              <Link to="">{mockApp["title"]}</Link>
-            </div>
-            <div className="applist-item__info__company">{mockApp["company"]}</div>
-          </div>
-          <div className="applist-item__status reject">{mockApp["status"]}</div>
-          <div className="applist-item__date">
-            <div className="applist-item__date__title">Date Applied:</div>
-            <div className="applist-item__date__date">{mockApp["applyDate"]}</div>
-          </div>
-          <div className="applist-item__location">
-            <div className="applist-item__location__type">{mockApp["type"]}</div>
-            <div className="applist-item__location__city">{mockApp["location"]}</div>
-          </div>
-          <div className="applist-item__notes">{mockApp["notes"]}</div>
-          <div className="applist-item__buttons">
-            <Link to="">
-              <HiPencil />
-            </Link>
-            <Link to="">
-              <HiTrash />
-            </Link>
-          </div>
-        </div>
+        {appTable}
         {/* End App list item */}
       </div>
     </>
