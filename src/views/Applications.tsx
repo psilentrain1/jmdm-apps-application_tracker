@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 import { HiPencil, HiTrash } from "react-icons/hi";
+import { useEffect } from "react";
+import axios from "axios";
 
 // TODO: programatically change date field...if the status is interviewing, show interview date. If the status is rejected, show reject date.
 
@@ -18,6 +20,11 @@ const mockApp = {
 };
 
 export function Applications() {
+  useEffect(() => {
+    axios.get("http://localhost:3000/applications/").then(({ data }) => {
+      console.log(data);
+    });
+  }, []);
   return (
     <>
       <div className="filters">
