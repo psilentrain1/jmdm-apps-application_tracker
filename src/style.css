@@ -344,17 +344,17 @@ footer a:hover {
   font-weight: bold;
 }
 
-.applied {
+.Applied {
   color: var(--txt-black);
-  background-color: white;
+  background-color: var(--clr-warning);
 }
 
-.interviewing {
+.Interview {
   color: var(--txt-white);
   background-color: var(--clr-success);
 }
 
-.reject {
+.Rejected {
   color: var(--txt-white);
   background-color: var(--clr-danger);
 }
@@ -401,6 +401,7 @@ footer a:hover {
   flex-direction: column;
   justify-content: center;
   padding: 10px 20px;
+  min-width: 215px;
   text-overflow: ellipsis;
 }
 
