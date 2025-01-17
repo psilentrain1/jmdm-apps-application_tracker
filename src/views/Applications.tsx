@@ -39,7 +39,7 @@ export function Applications() {
       <div className="applist-item" key={app.id}>
         <div className="applist-item__info">
           <div className="applist-item__info__title">
-            <Link to={`/application/${app.id}`}>{app.title}</Link>
+            <Link to={`/edit/${app.id}`}>{app.title}</Link>
           </div>
           <div className="applist-item__info__company">{app.company}</div>
         </div>
@@ -54,7 +54,7 @@ export function Applications() {
         </div>
         <div className="applist-item__notes">{app.notes}</div>
         <div className="applist-item__buttons">
-          <Link to={`/application/${app.id}`}>
+          <Link to={`/edit/${app.id}`}>
             <HiPencil />
           </Link>
           <Link to="">

@@ -153,7 +153,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 50px;
+  min-height: 50px;
   width: 100%;
   background-color: var(--bg-dark);
 }
@@ -202,16 +202,25 @@ header button {
   transition: color 0.3s ease;
 }
 
-header button:hover {
+header button:hover,
+header a:hover {
   color: var(--clr-primary-300);
 }
 
-header button:active {
+header button:active,
+header a:active {
   color: var(--clr-primary-500);
 }
 
-header button:focus-visible {
+header button:focus-visible,
+header a:focus-visible {
   outline: var(--link-focus);
+}
+
+header a,
+header a:visited {
+  color: var(--txt-white);
+  transition: color 0.3s ease;
 }
 
 header svg {

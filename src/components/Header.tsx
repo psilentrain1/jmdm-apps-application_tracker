@@ -14,9 +14,9 @@ export function Header() {
           <button type="button">
             <HiOutlineBell />
           </button>
-          <button type="button">
+          <a href="/edit/new">
             <HiPlus />
-          </button>
+          </a>
         </div>
       </header>
     </>
