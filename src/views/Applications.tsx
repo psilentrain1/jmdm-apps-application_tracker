@@ -36,6 +36,23 @@ export function Applications() {
   }
 
   function createAppItem(app: applicationData) {
+    let dateTitle: string = "";
+    let dateDate: string = "";
+
+    switch (String(app.status)) {
+      case "Applied":
+        dateTitle = "Date Applied";
+        dateDate = String(app.apply_date);
+        break;
+      case "Interview":
+        dateTitle = "Interview Date";
+        dateDate = String(app.interview_date);
+        break;
+      case "Rejected":
+        dateTitle = "Rejected Date";
+        dateDate = String(app.reject_date);
+    }
+
     return (
       <div className="applist-item" key={app.id}>
         <div className="applist-item__info">
@@ -46,8 +63,8 @@ export function Applications() {
         </div>
         <div className={`applist-item__status ${app.status}`}>{app.status}</div>
         <div className="applist-item__date">
-          <div className="applist-item__date__title">Date Applied:</div>
-          <div className="applist-item__date__date">{app.apply_date}</div>
+          <div className="applist-item__date__title">{dateTitle}:</div>
+          <div className="applist-item__date__date">{dateDate}</div>
         </div>
         <div className="applist-item__location">
           <div className="applist-item__location__type">{app.type}</div>
