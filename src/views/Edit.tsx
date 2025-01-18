@@ -21,18 +21,6 @@ export function Edit() {
         notes: "",
     })
 
-    /*    const title: HTMLInputElement = document.getElementById("title")
-    const company: HTMLInputElement = document.getElementById("company")
-    const location: HTMLInputElement = document.getElementById("location")
-    const type: HTMLInputElement = document.getElementById("type")
-    const industry: HTMLInputElement = document.getElementById("industry")
-    const status: HTMLInputElement = document.getElementById("status")
-    const apply_date: HTMLInputElement = document.getElementById("apply_date")
-    const interview_date: HTMLInputElement =
-        document.getElementById("interview_date")
-    const reject_date: HTMLInputElement = document.getElementById("reject_date")
-    const notes: HTMLTextAreaElement = document.getElementById("notes") */
-
     function getData() {
         axios.get(SERVER_URL + "/applications/" + appid).then(({ data }) => {
             setEntryData(data[0])
@@ -46,8 +34,12 @@ export function Edit() {
     }, [])
 
     function sendData() {
-        // Add conditional to check if it is a new or existing entry
-        axios.post(SERVER_URL + "/applications/" + appid, entryData)
+        axios
+            .post(SERVER_URL + "/applications/" + appid, entryData)
+            .then(({ data }) => {
+                console.log(data.response)
+                // if response == "ok", take me back to the applications page
+            })
     }
 
     function cancelEdit() {

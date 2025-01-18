@@ -12,7 +12,7 @@ function getEntry(id: number) {
 }
 
 function editEntry(entryObj: applicationData) {
-    const data = db.run(
+    const result = db.run(
         `UPDATE applications SET title = '${entryObj.title}', company = '${
             entryObj.company
         }', location = '${entryObj.location}', type = '${
@@ -25,11 +25,15 @@ function editEntry(entryObj: applicationData) {
             entryObj.reject_date == "" ? null : entryObj.reject_date
         }', notes = '${entryObj.notes}' WHERE id=${entryObj.id};`
     )
-    console.log(data)
+    let response = "error"
+    if (result.changes) {
+        response = "ok"
+    }
+    return { response }
 }
 
 function newEntry(entryObj: applicationData) {
-    const data = db.run(
+    const result = db.run(
         `INSERT INTO applications(title, company, location, type, industry, status, apply_date, interview_date, reject_date, notes) VALUES ('${
             entryObj.title
         }', '${entryObj.company}', '${entryObj.location}', '${
@@ -42,7 +46,11 @@ function newEntry(entryObj: applicationData) {
             entryObj.notes
         }');`
     )
-    console.log(data)
+    let response = "error"
+    if (result.changes) {
+        response = "ok"
+    }
+    return { response }
 }
 
 module.exports = { getApplications, getEntry, editEntry, newEntry }
