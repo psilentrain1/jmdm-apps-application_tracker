@@ -29,6 +29,11 @@ export function Edit() {
       fillForm();
     }
   }, []);
+
+  function cancelEdit() {
+    window.location.href = "/applications";
+  }
+
   return (
     <>
       <div className="edit">
@@ -99,7 +104,9 @@ export function Edit() {
           </div>
           <div className="edit-buttons">
             <button type="button">Save</button>
-            <button type="button">Cancel</button>
+            <button id="edit_cancel" type="button" onClick={cancelEdit}>
+              Cancel
+            </button>
           </div>
         </form>
       </div>
