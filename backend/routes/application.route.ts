@@ -43,7 +43,7 @@ router.post("/:id", function (req: Request, res: Response, next: NextFunction) {
 
 // DELETE
 router.get(
-    "/delete/:id",
+    "/del/:id",
     function (req: Request, res: Response, next: NextFunction) {
         try {
             res.json(applications.delEntry(req.params.id))
