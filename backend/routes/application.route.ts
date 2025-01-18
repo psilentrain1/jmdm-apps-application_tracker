@@ -42,5 +42,16 @@ router.post("/:id", function (req: Request, res: Response, next: NextFunction) {
 })
 
 // DELETE
+router.get(
+    "/del/:id",
+    function (req: Request, res: Response, next: NextFunction) {
+        try {
+            res.json(applications.delEntry(req.params.id))
+        } catch (err) {
+            console.error("Error while deleting entry ", err.message)
+            next(err)
+        }
+    }
+)
 
 module.exports = router
