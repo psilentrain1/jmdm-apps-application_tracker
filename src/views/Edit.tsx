@@ -1,9 +1,34 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 
-const SERVER_URL = "localhost:3000";
+const SERVER_URL = "http://localhost:3000";
 
 export function Edit() {
   let { appid } = useParams();
+
+  function fillForm() {
+    const title: HTMLInputElement = document.getElementById("title");
+    axios.get(SERVER_URL + "/applications/" + appid).then(({ data }) => {
+      const appdata = data[0];
+      document.getElementById("title").value = appdata.title;
+      document.getElementById("company").value = appdata.company;
+      document.getElementById("location").value = appdata.location;
+      document.getElementById("type").value = appdata.type;
+      document.getElementById("industry").value = appdata.industry;
+      document.getElementById("status").value = appdata.status;
+      document.getElementById("apply_date").value = appdata.apply_date;
+      document.getElementById("interview_date").value = appdata.interview_date;
+      document.getElementById("reject_date").value = appdata.reject_date;
+      document.getElementById("notes").value = appdata.notes;
+    });
+  }
+
+  useEffect(() => {
+    if (appid != "new") {
+      fillForm();
+    }
+  }, []);
   return (
     <>
       <div className="edit">

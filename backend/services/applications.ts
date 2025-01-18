@@ -5,4 +5,9 @@ function getApplications() {
   return data;
 }
 
-module.exports = { getApplications };
+function getEntry(id: number) {
+  const data = db.query(`SELECT * FROM applications WHERE id = ${id};`);
+  return data;
+}
+
+module.exports = { getApplications, getEntry };
