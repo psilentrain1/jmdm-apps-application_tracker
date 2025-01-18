@@ -53,4 +53,13 @@ function newEntry(entryObj: applicationData) {
     return { response }
 }
 
-module.exports = { getApplications, getEntry, editEntry, newEntry }
+function delEntry(id: number) {
+    const result = db.run(`DELETE FROM applications WHERE id=${id};`)
+    let response = "error"
+    if (result.changes) {
+        response = "ok"
+    }
+    return { response }
+}
+
+module.exports = { getApplications, getEntry, editEntry, newEntry, delEntry }
