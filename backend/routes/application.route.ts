@@ -3,8 +3,6 @@ const express = require("express")
 const router = express.Router()
 const applications = require("../services/applications")
 
-// CREATE
-
 // READ
 router.get("/", function (req: Request, res: Response, next: NextFunction) {
     try {
@@ -24,6 +22,7 @@ router.get("/:id", function (req: Request, res: Response, next: NextFunction) {
     }
 })
 
+// CREATE/UPDATE
 router.post("/:id", function (req: Request, res: Response, next: NextFunction) {
     if (req.params.id == "new") {
         try {
@@ -41,8 +40,6 @@ router.post("/:id", function (req: Request, res: Response, next: NextFunction) {
         }
     }
 })
-
-// UPDATE
 
 // DELETE
 
