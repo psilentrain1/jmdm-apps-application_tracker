@@ -38,7 +38,10 @@ export function Edit() {
             .post(SERVER_URL + "/applications/" + appid, entryData)
             .then(({ data }) => {
                 console.log(data.response)
-                // if response == "ok", take me back to the applications page
+                if (data.response == "ok") {
+                    window.location.href = "/applications"
+                }
+                // else toast/popup with an error
             })
     }
 
