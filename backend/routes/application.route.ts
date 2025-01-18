@@ -42,7 +42,7 @@ router.post("/:id", function (req: Request, res: Response, next: NextFunction) {
 })
 
 // DELETE
-router.post(
+router.get(
     "/delete/:id",
     function (req: Request, res: Response, next: NextFunction) {
         try {
