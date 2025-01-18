@@ -6,6 +6,7 @@ const appRouter = require("./routes/application.route");
 const cors = require("cors");
 
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
   res.json({ message: "Ping!" });

@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App.tsx";
 import { Dashboard } from "./views/Dashboard.tsx";
 import { Applications } from "./views/Applications.tsx";
+import { Edit } from "./views/Edit.tsx";
 import "./style.css";
 
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/applications",
         element: <Applications />,
+      },
+      {
+        path: "/edit/:appid",
+        element: <Edit />,
       },
     ],
   },
