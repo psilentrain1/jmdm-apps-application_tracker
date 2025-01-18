@@ -210,9 +210,8 @@ header button {
     transition: color 0.3s ease;
 }
 
-header button:hover,
-header a:hover {
-    color: var(--clr-primary-300);
+header a {
+    display: inline-block;
 }
 
 header button:active,
@@ -234,6 +233,11 @@ header a:visited {
 header svg {
     font-size: 1.8rem;
     margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+header svg:hover {
+    color: var(--clr-primary-300);
 }
 
 /* -------- */
