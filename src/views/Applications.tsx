@@ -97,16 +97,16 @@ export function Applications() {
     }
 
     const [filterSort, setFilterSort] = useState<sorting>({
-        sortcol: "",
-        filtercol: "",
-        filterdata: "",
+        sortcol: "0",
+        filtercol: "0",
+        filterdata: "0",
     })
 
     useEffect(() => {
         axios
             .get(
                 SERVER_URL +
-                    "/applications/filter/" +
+                    "filter/" +
                     filterSort.sortcol +
                     "/" +
                     filterSort.filtercol +
@@ -114,7 +114,7 @@ export function Applications() {
                     filterSort.filterdata
             )
             .then(({ data }) => {
-                console.log(data)
+                setAppList(data)
             })
     }, [filterSort])
 
@@ -134,8 +134,8 @@ export function Applications() {
                             })
                         }
                     >
-                        <option value=""></option>
-                        <option value="position">Position</option>
+                        <option value="0"></option>
+                        <option value="title">Title</option>
                         <option value="status">Status</option>
                         <option value="apply_date">Apply Date</option>
                     </select>
@@ -161,7 +161,7 @@ export function Applications() {
                             })
                         }
                     >
-                        <option value=""></option>
+                        <option value="0"></option>
                         <option value="status">Status</option>
                         <option value="type">Type</option>
                         <option value="industry">Industry</option>

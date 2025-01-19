@@ -1,13 +1,24 @@
 const db = require("../database/db")
-import { applicationData } from "../types/applications.types"
+import { applicationData, sorting } from "../types/applications.types"
 
 function getApplications() {
     const data = db.query("SELECT * FROM applications;")
     return data
 }
 
-function filterApplications(params) {
-    console.log(params)
+function filterApplications(params: sorting) {
+    let filter = ""
+    let sort = ""
+    if (params.filtercol != "0") {
+        filter = ` WHERE ${params.filtercol}='${params.filterdata}'`
+    }
+    if (params.sortcol != "0") {
+        sort = ` ORDER BY ${params.sortcol}`
+    }
+
+    const query = `SELECT * FROM applications${filter}${sort};`
+    const data = db.query(query)
+    return data
 }
 
 function getEntry(id: number) {
