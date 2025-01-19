@@ -25,6 +25,18 @@ router.get(
     }
 )
 
+router.get(
+    "/filter/:sortcol/:filtercol/:filterdata",
+    function (req: Request, res: Response, next: NextFunction) {
+        try {
+            res.json(applications.filterApplications(req.params))
+        } catch (err) {
+            console.error("Error while getting applications ", err.message)
+            next(err)
+        }
+    }
+)
+
 // CREATE/UPDATE
 router.post(
     "/update/:id",

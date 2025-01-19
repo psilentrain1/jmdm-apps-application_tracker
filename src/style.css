@@ -314,6 +314,27 @@ footer a:hover {
     margin-right: 20px;
 }
 
+#appsortdir {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.appsortarr {
+    color: var(--txt-black);
+    font-weight: bold;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.appsortarr::before {
+    content: "\2193";
+}
+
+#appsortdir:checked + .appsortarr::before {
+    content: "\2191";
+}
+
 .filters span {
     margin-right: 5px;
 }
