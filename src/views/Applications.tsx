@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { applicationData } from "../types/applications.types"
 
-const SERVER_URL = "http://localhost:3000"
+const SERVER_URL = "http://localhost:3000/apps/"
 
 export function Applications() {
     const [appList, setAppList] = useState<applicationData>({})
@@ -78,7 +78,7 @@ export function Applications() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:3000/applications/").then(({ data }) => {
+        axios.get(SERVER_URL).then(({ data }) => {
             setAppList(data)
         })
     }, [])
@@ -88,12 +88,10 @@ export function Applications() {
     }, [appList])
 
     function deleteItem(appid: number) {
-        axios
-            .get(SERVER_URL + "/applications/del/" + appid)
-            .then(({ data }) => {
-                console.log(data)
-            })
-        axios.get("http://localhost:3000/applications/").then(({ data }) => {
+        axios.get(SERVER_URL + "del/" + appid).then(({ data }) => {
+            console.log(data)
+        })
+        axios.get(SERVER_URL).then(({ data }) => {
             setAppList(data)
         })
     }

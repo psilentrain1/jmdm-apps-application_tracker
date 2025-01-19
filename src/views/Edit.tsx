@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { applicationData } from "../types/applications.types"
 
-const SERVER_URL = "http://localhost:3000"
+const SERVER_URL = "http://localhost:3000/apps/"
 
 export function Edit() {
     const { appid } = useParams()
@@ -22,7 +22,7 @@ export function Edit() {
     })
 
     function getData() {
-        axios.get(SERVER_URL + "/applications/" + appid).then(({ data }) => {
+        axios.get(SERVER_URL + "entry/" + appid).then(({ data }) => {
             setEntryData(data[0])
         })
     }
@@ -35,7 +35,7 @@ export function Edit() {
 
     function sendData() {
         axios
-            .post(SERVER_URL + "/applications/" + appid, entryData)
+            .post(SERVER_URL + "update/" + appid, entryData)
             .then(({ data }) => {
                 console.log(data.response)
                 if (data.response == "ok") {
