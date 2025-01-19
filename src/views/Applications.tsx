@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import { HiPencil, HiTrash } from "react-icons/hi"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { applicationData } from "../types/applications.types"
+import { applicationData, sorting } from "../types/applications.types"
 
 const SERVER_URL = "http://localhost:3000"
 
@@ -98,20 +98,87 @@ export function Applications() {
         })
     }
 
+    const [filterSort, setFilterSort] = useState<sorting>({
+        sortcol: "",
+        filtercol: "",
+        filterdata: "",
+    })
+
+    useEffect(() => {
+        axios
+            .get(
+                SERVER_URL +
+                    "/applications/filter/" +
+                    filterSort.sortcol +
+                    "/" +
+                    filterSort.filtercol +
+                    "/" +
+                    filterSort.filterdata
+            )
+            .then(({ data }) => {
+                console.log(data)
+            })
+    }, [filterSort])
+
     return (
         <>
             <div className="filters">
                 <div className="sort">
                     <span>Sort by:</span>
-                    <select name="appsort" id="appsort"></select>
-                    <input type="checkbox" name="appsortdir" id="appsortdir" />
+                    <select
+                        name="appsort"
+                        id="appsort"
+                        value={filterSort.sortcol}
+                        onChange={(e) =>
+                            setFilterSort({
+                                ...filterSort,
+                                sortcol: e.target.value,
+                            })
+                        }
+                    >
+                        <option value=""></option>
+                        <option value="position">Position</option>
+                        <option value="status">Status</option>
+                        <option value="apply_date">Apply Date</option>
+                    </select>
+                    <label className="appsortswitch" htmlFor="appsortdir">
+                        <input
+                            type="checkbox"
+                            name="appsortdir"
+                            id="appsortdir"
+                        />
+                        <span className="appsortarr"></span>
+                    </label>
                 </div>
                 <div className="filter">
                     <span>Filter by:</span>
-                    <select name="appfilterfield" id="appfilterfield"></select>
+                    <select
+                        name="appfilterfield"
+                        id="appfilterfield"
+                        value={filterSort.filtercol}
+                        onChange={(e) =>
+                            setFilterSort({
+                                ...filterSort,
+                                filtercol: e.target.value,
+                            })
+                        }
+                    >
+                        <option value=""></option>
+                        <option value="status">Status</option>
+                        <option value="type">Type</option>
+                        <option value="industry">Industry</option>
+                        <option value="title">Job Title</option>
+                    </select>
                     <select
                         name="appfilterfilter"
                         id="appfilterfilter"
+                        value={filterSort.filterdata}
+                        onChange={(e) =>
+                            setFilterSort({
+                                ...filterSort,
+                                filterdata: e.target.value,
+                            })
+                        }
                     ></select>
                 </div>
             </div>

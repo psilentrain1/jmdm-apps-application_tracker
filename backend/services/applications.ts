@@ -6,6 +6,10 @@ function getApplications() {
     return data
 }
 
+function filterApplications(params) {
+    console.log(params)
+}
+
 function getEntry(id: number) {
     const data = db.query(`SELECT * FROM applications WHERE id = ${id};`)
     return data
@@ -62,4 +66,11 @@ function delEntry(id: number) {
     return { response }
 }
 
-module.exports = { getApplications, getEntry, editEntry, newEntry, delEntry }
+module.exports = {
+    getApplications,
+    filterApplications,
+    getEntry,
+    editEntry,
+    newEntry,
+    delEntry,
+}
