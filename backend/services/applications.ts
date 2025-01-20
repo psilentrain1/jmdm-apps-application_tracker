@@ -9,11 +9,13 @@ function getApplications() {
 function filterApplications(params: sorting) {
     let filter = ""
     let sort = ""
-    if (params.filtercol != "0") {
+    if (params.filtercol != "none") {
         filter = ` WHERE ${params.filtercol}='${params.filterdata}'`
     }
-    if (params.sortcol != "0") {
+    if (params.sortcol != "none") {
         sort = ` ORDER BY ${params.sortcol}`
+    } else if (params.sortcol == "none") {
+        sort = ` ORDER BY id`
     }
 
     const query = `SELECT * FROM applications${filter}${sort};`

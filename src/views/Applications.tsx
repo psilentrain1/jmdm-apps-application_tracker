@@ -97,9 +97,9 @@ export function Applications() {
     }
 
     const [filterSort, setFilterSort] = useState<sorting>({
-        sortcol: "0",
-        filtercol: "0",
-        filterdata: "0",
+        sortcol: "none",
+        filtercol: "none",
+        filterdata: "none",
     })
 
     useEffect(() => {
@@ -134,7 +134,7 @@ export function Applications() {
                             })
                         }
                     >
-                        <option value="0"></option>
+                        <option value="none"></option>
                         <option value="title">Title</option>
                         <option value="status">Status</option>
                         <option value="apply_date">Apply Date</option>
@@ -160,8 +160,9 @@ export function Applications() {
                                 filtercol: e.target.value,
                             })
                         }
+                        disabled
                     >
-                        <option value="0"></option>
+                        <option value="none"></option>
                         <option value="status">Status</option>
                         <option value="type">Type</option>
                         <option value="industry">Industry</option>
@@ -177,6 +178,7 @@ export function Applications() {
                                 filterdata: e.target.value,
                             })
                         }
+                        disabled
                     ></select>
                 </div>
             </div>
