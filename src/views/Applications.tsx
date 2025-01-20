@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import { HiPencil, HiTrash } from "react-icons/hi"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { applicationData } from "../types/applications.types"
+import { applicationData, sorting } from "../types/applications.types"
 
 const SERVER_URL = "http://localhost:3000/apps/"
 
@@ -96,20 +96,103 @@ export function Applications() {
         })
     }
 
+    function changeSortDir() {
+        const sortWidget = document.getElementById("appsortdir")
+
+        if (sortWidget.checked) {
+            setFilterSort({ ...filterSort, sortdir: "DESC" })
+        } else {
+            setFilterSort({ ...filterSort, sortdir: "ASC" })
+        }
+    }
+
+    const [filterSort, setFilterSort] = useState<sorting>({
+        sortcol: "none",
+        sortdir: "ASC",
+        filtercol: "none",
+        filterdata: "none",
+    })
+
+    useEffect(() => {
+        axios
+            .get(
+                SERVER_URL +
+                    "filter/" +
+                    filterSort.sortcol +
+                    "/" +
+                    filterSort.sortdir +
+                    "/" +
+                    filterSort.filtercol +
+                    "/" +
+                    filterSort.filterdata
+            )
+            .then(({ data }) => {
+                setAppList(data)
+            })
+    }, [filterSort])
+
     return (
         <>
             <div className="filters">
                 <div className="sort">
                     <span>Sort by:</span>
-                    <select name="appsort" id="appsort"></select>
-                    <input type="checkbox" name="appsortdir" id="appsortdir" />
+                    <select
+                        name="appsort"
+                        id="appsort"
+                        value={filterSort.sortcol}
+                        onChange={(e) =>
+                            setFilterSort({
+                                ...filterSort,
+                                sortcol: e.target.value,
+                            })
+                        }
+                    >
+                        <option value="none"></option>
+                        <option value="title">Title</option>
+                        <option value="status">Status</option>
+                        <option value="apply_date">Apply Date</option>
+                    </select>
+                    <label className="appsortswitch" htmlFor="appsortdir">
+                        <input
+                            type="checkbox"
+                            name="appsortdir"
+                            id="appsortdir"
+                            onChange={changeSortDir}
+                        />
+                        <span className="appsortarr"></span>
+                    </label>
                 </div>
                 <div className="filter">
                     <span>Filter by:</span>
-                    <select name="appfilterfield" id="appfilterfield"></select>
+                    <select
+                        name="appfilterfield"
+                        id="appfilterfield"
+                        value={filterSort.filtercol}
+                        onChange={(e) =>
+                            setFilterSort({
+                                ...filterSort,
+                                filtercol: e.target.value,
+                            })
+                        }
+                        disabled
+                    >
+                        <option value="none"></option>
+                        <option value="status">Status</option>
+                        <option value="type">Type</option>
+                        <option value="industry">Industry</option>
+                        <option value="title">Job Title</option>
+                    </select>
                     <select
                         name="appfilterfilter"
                         id="appfilterfilter"
+                        value={filterSort.filterdata}
+                        onChange={(e) =>
+                            setFilterSort({
+                                ...filterSort,
+                                filterdata: e.target.value,
+                            })
+                        }
+                        disabled
                     ></select>
                 </div>
             </div>

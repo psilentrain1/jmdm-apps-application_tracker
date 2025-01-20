@@ -281,7 +281,24 @@ footer a:hover {
 
 /* PAGES */
 /* dashboard */
+.above-the-fold {
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+    border: 1px solid pink;
+}
 
+.at-a-glance {
+    width: calc(100% - 270px);
+    border: 1px solid red;
+}
+
+.calendar {
+}
+
+.charts {
+    border: 1px solid yellow;
+}
 /* -------- */
 
 /* applications */
@@ -295,6 +312,27 @@ footer a:hover {
 
 .sort {
     margin-right: 20px;
+}
+
+#appsortdir {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.appsortarr {
+    color: var(--txt-black);
+    font-weight: bold;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.appsortarr::before {
+    content: "\2193";
+}
+
+#appsortdir:checked + .appsortarr::before {
+    content: "\2191";
 }
 
 .filters span {
@@ -585,3 +623,39 @@ footer a:hover {
     outline: var(--link-focus);
 }
 /* -------- */
+
+/* calendar */
+.calendar__body {
+    background-color: var(--clr-primary-950);
+}
+
+.calendar__dateBtn {
+    background-color: var(--clr-primary-950);
+    color: var(--txt-white);
+}
+
+.calendar__dateBtn:hover {
+    background-color: var(--clr-primary-900);
+}
+
+.calendar__date[data-vc-date-weekend] .calendar__dateBtn {
+    color: var(--clr-secondary-500);
+}
+
+.calendar__date[data-vc-date-month="prev"] .calendar__dateBtn,
+.calendar__date[data-vc-date-month="next"] .calendar__dateBtn {
+    color: var(--clr-gray-500);
+}
+
+.calendar__date[data-vc-date-today] .calendar__dateBtn {
+    background-color: var(--clr-primary-900);
+    color: var(--txt-white);
+}
+
+.calendar__weekDay {
+    color: var(--txt-white);
+}
+
+.calendar__weekDay[data-vc-week-day-off] {
+    color: var(--clr-secondary-500);
+}

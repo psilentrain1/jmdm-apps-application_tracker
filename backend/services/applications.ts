@@ -1,8 +1,25 @@
 const db = require("../database/db")
-import { applicationData } from "../types/applications.types"
+import { applicationData, sorting } from "../types/applications.types"
 
 function getApplications() {
     const data = db.query("SELECT * FROM applications;")
+    return data
+}
+
+function filterApplications(params: sorting) {
+    let filter = ""
+    let sort = ""
+    if (params.filtercol != "none") {
+        filter = ` WHERE ${params.filtercol}='${params.filterdata}'`
+    }
+    if (params.sortcol != "none") {
+        sort = ` ORDER BY ${params.sortcol} ${params.sortdir}`
+    } else if (params.sortcol == "none") {
+        sort = ` ORDER BY id ${params.sortdir}`
+    }
+
+    const query = `SELECT * FROM applications${filter}${sort};`
+    const data = db.query(query)
     return data
 }
 
@@ -62,4 +79,11 @@ function delEntry(id: number) {
     return { response }
 }
 
-module.exports = { getApplications, getEntry, editEntry, newEntry, delEntry }
+module.exports = {
+    getApplications,
+    filterApplications,
+    getEntry,
+    editEntry,
+    newEntry,
+    delEntry,
+}
