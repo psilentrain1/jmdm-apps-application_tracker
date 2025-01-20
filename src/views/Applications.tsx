@@ -96,8 +96,19 @@ export function Applications() {
         })
     }
 
+    function changeSortDir() {
+        const sortWidget = document.getElementById("appsortdir")
+
+        if (sortWidget.checked) {
+            setFilterSort({ ...filterSort, sortdir: "DESC" })
+        } else {
+            setFilterSort({ ...filterSort, sortdir: "ASC" })
+        }
+    }
+
     const [filterSort, setFilterSort] = useState<sorting>({
         sortcol: "none",
+        sortdir: "ASC",
         filtercol: "none",
         filterdata: "none",
     })
@@ -108,6 +119,8 @@ export function Applications() {
                 SERVER_URL +
                     "filter/" +
                     filterSort.sortcol +
+                    "/" +
+                    filterSort.sortdir +
                     "/" +
                     filterSort.filtercol +
                     "/" +
@@ -144,6 +157,7 @@ export function Applications() {
                             type="checkbox"
                             name="appsortdir"
                             id="appsortdir"
+                            onChange={changeSortDir}
                         />
                         <span className="appsortarr"></span>
                     </label>

@@ -26,7 +26,7 @@ router.get(
 )
 
 router.get(
-    "/filter/:sortcol/:filtercol/:filterdata",
+    "/filter/:sortcol/:sortdir/:filtercol/:filterdata",
     function (req: Request, res: Response, next: NextFunction) {
         try {
             res.json(applications.filterApplications(req.params))

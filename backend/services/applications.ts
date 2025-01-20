@@ -13,9 +13,9 @@ function filterApplications(params: sorting) {
         filter = ` WHERE ${params.filtercol}='${params.filterdata}'`
     }
     if (params.sortcol != "none") {
-        sort = ` ORDER BY ${params.sortcol}`
+        sort = ` ORDER BY ${params.sortcol} ${params.sortdir}`
     } else if (params.sortcol == "none") {
-        sort = ` ORDER BY id`
+        sort = ` ORDER BY id ${params.sortdir}`
     }
 
     const query = `SELECT * FROM applications${filter}${sort};`

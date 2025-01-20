@@ -14,6 +14,7 @@ export interface applicationData {
 
 export interface sorting {
     sortcol: string
+    sortdir: string
     filtercol: string
     filterdata: string
 }
