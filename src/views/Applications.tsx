@@ -3,8 +3,7 @@ import { HiPencil, HiTrash } from "react-icons/hi"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { applicationData, sorting } from "../types/applications.types"
-
-const SERVER_URL = "http://localhost:3000/apps/"
+import { SERVER_URL } from "../util/server"
 
 export function Applications() {
     const [appList, setAppList] = useState<applicationData>({})

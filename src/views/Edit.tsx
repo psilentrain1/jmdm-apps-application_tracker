@@ -2,8 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { applicationData } from "../types/applications.types"
-
-const SERVER_URL = "http://localhost:3000/apps/"
+import { SERVER_URL } from "../util/server"
 
 export function Edit() {
     const { appid } = useParams()
