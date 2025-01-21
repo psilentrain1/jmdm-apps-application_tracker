@@ -18,3 +18,10 @@ export interface sorting {
     filtercol: string
     filterdata: string
 }
+
+export interface aag {
+    weekstart: string
+    weekend: string
+    monthstart: string
+    monthend: string
+}

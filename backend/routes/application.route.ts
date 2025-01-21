@@ -37,6 +37,15 @@ router.get(
     }
 )
 
+router.post("/aag", function (req: Request, res: Response, next: NextFunction) {
+    try {
+        res.json(applications.getAAG(req.body))
+    } catch (err) {
+        console.error("Error while getting data ", err.message)
+        next(err)
+    }
+})
+
 // CREATE/UPDATE
 router.post(
     "/update/:id",
