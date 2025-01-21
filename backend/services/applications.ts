@@ -1,8 +1,20 @@
 const db = require("../database/db")
-import { applicationData, sorting } from "../types/applications.types"
+import { aag, applicationData, sorting } from "../types/applications.types"
 
 function getApplications() {
     const data = db.query("SELECT * FROM applications;")
+    return data
+}
+
+function getAAG(aag: aag) {
+    const weekdata = db.query(
+        `SELECT COUNT(*) FROM applications WHERE apply_date BETWEEN '${aag.weekstart}' AND '${aag.weekend}';`
+    )
+    const monthdata = db.query(
+        `SELECT COUNT(*) FROM applications WHERE apply_date BETWEEN '${aag.monthstart}' AND '${aag.monthend}';`
+    )
+
+    const data = [weekdata[0]["COUNT(*)"], monthdata[0]["COUNT(*)"]]
     return data
 }
 
@@ -86,4 +98,5 @@ module.exports = {
     editEntry,
     newEntry,
     delEntry,
+    getAAG,
 }
