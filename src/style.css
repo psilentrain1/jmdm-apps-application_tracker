@@ -301,7 +301,7 @@ footer a:hover {
 }
 
 .charts {
-    border: 1px solid yellow;
+    padding: 10px;
 }
 /* -------- */
 
@@ -691,5 +691,12 @@ footer a:hover {
 .charts {
     display: grid;
     grid-template-columns: auto auto;
+    margin-bottom: 20px;
+}
+
+.charts > div {
+    padding: 10px;
+    border-radius: var(--radius);
+    overflow: hidden;
 }
 /* -------- */
