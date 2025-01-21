@@ -28,3 +28,4 @@ TODO.md
 mock-dataset.md
 scratch.txt
 applications.db
+*.sqlite3-query

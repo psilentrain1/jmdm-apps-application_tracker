@@ -1,5 +1,6 @@
 import { AtAGlance } from "../components/AtAGlance"
 import { Schedule } from "../components/Calendar"
+import { Charts } from "../components/Charts"
 
 export function Dashboard() {
     return (
@@ -12,7 +13,9 @@ export function Dashboard() {
                     <Schedule />
                 </div>
             </section>
-            <section className="charts"></section>
+            <section className="charts">
+                <Charts />
+            </section>
         </>
     )
 }
