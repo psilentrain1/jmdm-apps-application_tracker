@@ -1,28 +1,28 @@
 {
-  "name": "application_tracker-backend",
-  "version": "0.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "echo $(tsc) && echo $(node dist/server.js)"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "better-sqlite3": "^11.8.0",
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "nodemon": "^3.1.9"
-  },
-  "devDependencies": {
-    "@types/better-sqlite3": "^7.6.12",
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.10.7",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
-  }
+    "name": "application_tracker-backend",
+    "version": "0.1.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "echo $(tsc) && echo $(node dist/server.js)"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "better-sqlite3": "^11.8.0",
+        "body-parser": "^1.20.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "nodemon": "^3.1.9"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.6.12",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.10.7",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.7.3"
+    }
 }
