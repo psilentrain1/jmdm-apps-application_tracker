@@ -12,8 +12,8 @@ export function Schedule() {
         firstWeekday: 0,
     }
 
-    const calendar = new Calendar("#calendar", calendarOptions)
-    calendar.init()
+    // const calendar = new Calendar("#calendar", calendarOptions)
+    // calendar.init()
 
     return (
         <>

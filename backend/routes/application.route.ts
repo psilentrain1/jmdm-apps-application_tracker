@@ -81,4 +81,17 @@ router.get(
     }
 )
 
+// CHARTS
+router.get(
+    "/chart/:chart",
+    function (req: Request, res: Response, next: NextFunction) {
+        try {
+            res.json(applications.chart(req.params.chart))
+        } catch (err) {
+            console.error("Error while getting data ", err.message)
+            next(err)
+        }
+    }
+)
+
 module.exports = router

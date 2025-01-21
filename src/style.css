@@ -684,3 +684,12 @@ footer a:hover {
 .calendar__weekDay[data-vc-week-day-off] {
     color: var(--clr-secondary-500);
 }
+
+/* -------- */
+
+/* charts */
+.charts {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+/* -------- */
