@@ -11,7 +11,9 @@ export function Header() {
                             type="search"
                             name="search"
                             id="search"
-                            placeholder="Search..."
+                            // placeholder="Search..."
+                            placeholder="Coming soon..."
+                            disabled
                         />
                         <HiSearch />
                     </form>
