@@ -1,35 +1,33 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { HiOutlineBell, HiPlus, HiSearch } from "react-icons/hi"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { SERVER_URL } from "../util/server"
 import { applicationData } from "../types/applications.types"
 
 export function Header() {
+    const navigate = useNavigate()
     const [searchQuery, setSearchQuery] = useState("")
     const [searchResults, setSearchResults] = useState(
         <span className="no-result">No Results</span>
     )
+    const resultsRef = useRef<HTMLDivElement>(null)
 
     const search = document.getElementById("search")
     const searchResultsList = document.getElementById("searchResults")
 
-    /*     searchResultsList?.addEventListener("click", (event) => {
-        event.preventDefault()
-
-        const link = (event.target as HTMLElement).closest("a")
-
-        console.log(link)
-    }) */
-
-    /*     search?.addEventListener("blur", (event) => {
-        // console.log(event.relatedTarget.nodeName)
-        if (event.relatedTarget && event.relatedTarget.nodeName == "A") {
-            console.log("")
-        } else {
+    function handleBlur(event: React.FocusEvent) {
+        if (!resultsRef.current?.contains(event.relatedTarget as Node)) {
             searchResultsList?.classList.remove("show-results")
+        } else {
+            searchResultsList?.addEventListener("click", (e) => {
+                event.preventDefault()
+                const link = e.target?.closest("a")
+                navigate(link.pathname)
+                searchResultsList?.classList.remove("show-results")
+            })
         }
-    }) */
+    }
 
     function getSearchResults() {
         if (searchQuery.length >= 3) {
@@ -51,16 +49,13 @@ export function Header() {
                     setSearchResults(resultRows)
                 }
             })
-            // if search box has focus, show the results
-        } /* else {
-            searchResultsList?.classList.remove("show-results")
-        } */
+        }
     }
 
     function searchResult(data: applicationData) {
         return (
             <>
-                <div className="result" key={data.id}>
+                <div className="result" key={`search-${data.id}`}>
                     <div className="result__title">
                         <Link to={`/edit/${data.id}`}>{data.title}</Link>
                     </div>
@@ -86,10 +81,15 @@ export function Header() {
                                 placeholder="Search..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
+                                onBlur={handleBlur}
                             />
                             <HiSearch />
                         </form>
-                        <div id="searchResults" className="search-results">
+                        <div
+                            id="searchResults"
+                            className="search-results"
+                            ref={resultsRef}
+                        >
                             {searchResults}
                         </div>
                     </div>
