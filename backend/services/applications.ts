@@ -140,6 +140,14 @@ function chart(chart: string) {
     return data
 }
 
+// search queries
+function search(query: string) {
+    const data = db.query(
+        `SELECT * FROM applications WHERE title LIKE '%${query}%' OR company LIKE '%${query}%' OR location LIKE '%${query}%' OR type LIKE '%${query}%' OR industry LIKE '%${query}%' OR status LIKE '%${query}%' OR notes LIKE '%${query}%';`
+    )
+    return data
+}
+
 export {
     getApplications,
     filterApplications,
@@ -149,4 +157,5 @@ export {
     delEntry,
     getAAG,
     chart,
+    search,
 }
