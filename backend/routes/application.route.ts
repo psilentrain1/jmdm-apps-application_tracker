@@ -26,6 +26,18 @@ router.get(
 )
 
 router.get(
+    "/search/:q",
+    function (req: Request, res: Response, next: NextFunction) {
+        try {
+            res.json(applications.search(req.params.q))
+        } catch (err) {
+            console.error("Error while searching ", err.message)
+            next(err)
+        }
+    }
+)
+
+router.get(
     "/filter/:sortcol/:sortdir/:filtercol/:filterdata",
     function (req: Request, res: Response, next: NextFunction) {
         try {
