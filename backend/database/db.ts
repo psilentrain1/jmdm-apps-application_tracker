@@ -1,5 +1,5 @@
-const sqlite = require("better-sqlite3")
-const path = require("path")
+import sqlite from "better-sqlite3"
+import path from "path"
 const db = new sqlite(path.resolve("./database/applications.db"), {
     fileMustExist: true,
 })
@@ -12,4 +12,4 @@ function run(sql: string) {
     return db.prepare(sql).run()
 }
 
-module.exports = { query, run }
+export { query, run }

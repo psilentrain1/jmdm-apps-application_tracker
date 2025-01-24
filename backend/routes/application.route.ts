@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express"
-const express = require("express")
+import express from "express"
 const router = express.Router()
-const applications = require("../services/applications")
+import * as applications from "../services/applications"
 
 // READ
 router.get("/", function (req: Request, res: Response, next: NextFunction) {
@@ -94,4 +94,4 @@ router.get(
     }
 )
 
-module.exports = router
+export { router as appRouter }
