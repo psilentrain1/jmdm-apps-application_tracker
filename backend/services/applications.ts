@@ -1,5 +1,6 @@
-const db = require("../database/db")
-import { aag, applicationData, sorting } from "../types/applications.types"
+import * as db from "../database/db"
+import { aag, applicationData } from "../types/applications.types"
+import { ParamsDictionary } from "express-serve-static-core"
 
 function getApplications() {
     const data = db.query("SELECT * FROM applications;")
@@ -9,16 +10,16 @@ function getApplications() {
 function getAAG(aag: aag) {
     const weekdata = db.query(
         `SELECT COUNT(*) FROM applications WHERE apply_date BETWEEN '${aag.weekstart}' AND '${aag.weekend}';`
-    )
+    ) as { "COUNT(*)": number }[]
     const monthdata = db.query(
         `SELECT COUNT(*) FROM applications WHERE apply_date BETWEEN '${aag.monthstart}' AND '${aag.monthend}';`
-    )
+    ) as { "COUNT(*)": number }[]
 
     const data = [weekdata[0]["COUNT(*)"], monthdata[0]["COUNT(*)"]]
     return data
 }
 
-function filterApplications(params: sorting) {
+function filterApplications(params: ParamsDictionary) {
     let filter = ""
     let sort = ""
     if (params.filtercol != "none") {
@@ -35,7 +36,7 @@ function filterApplications(params: sorting) {
     return data
 }
 
-function getEntry(id: number) {
+function getEntry(id: string) {
     const data = db.query(`SELECT * FROM applications WHERE id = ${id};`)
     return data
 }
@@ -82,7 +83,7 @@ function newEntry(entryObj: applicationData) {
     return { response }
 }
 
-function delEntry(id: number) {
+function delEntry(id: string) {
     const result = db.run(`DELETE FROM applications WHERE id=${id};`)
     let response = "error"
     if (result.changes) {
@@ -139,7 +140,7 @@ function chart(chart: string) {
     return data
 }
 
-module.exports = {
+export {
     getApplications,
     filterApplications,
     getEntry,
