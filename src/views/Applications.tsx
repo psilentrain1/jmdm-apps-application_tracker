@@ -13,7 +13,9 @@ export function Applications() {
     const rows = useGetTableRows(filterSort)
 
     function changeSortDir() {
-        const sortWidget = document.getElementById("appsortdir")
+        const sortWidget = document.getElementById(
+            "appsortdir"
+        ) as HTMLInputElement
         if (sortWidget.checked) {
             setFilterSort({ ...filterSort, sortdir: "DESC" })
         } else {
