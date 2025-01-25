@@ -106,4 +106,17 @@ router.get(
     }
 )
 
+// CALENDAR
+router.get(
+    "/cal/int",
+    function (req: Request, res: Response, next: NextFunction) {
+        try {
+            res.json(applications.interviews())
+        } catch (err) {
+            console.error("Error while getting interviews ", err.message)
+            next(err)
+        }
+    }
+)
+
 export { router as appRouter }

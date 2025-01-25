@@ -761,6 +761,10 @@ footer a:hover {
     color: var(--clr-secondary-500);
 }
 
+.calendar__interview {
+    background-color: var(--clr-primary-800);
+}
+
 /* -------- */
 
 /* charts */
