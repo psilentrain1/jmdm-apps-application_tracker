@@ -1,52 +1,37 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { applicationData } from "../types/applications.types"
 import { SERVER_URL } from "../util/server"
+import { useGetApplication } from "../hooks/useGetApplication"
+import { useUpdateApplication } from "../hooks/useUpdateApplication"
 
 export function Edit() {
     const { appid } = useParams()
-    const [entryData, setEntryData] = useState<applicationData>({
-        id: 0,
-        title: "",
-        company: "",
-        location: "",
-        type: "",
-        industry: "",
-        status: "",
-        apply_date: "",
-        interview_date: "",
-        reject_date: "",
-        notes: "",
-    })
+    const [entryData, setEntryData] = useState<applicationData>({})
 
-    function getData() {
-        axios.get(SERVER_URL + "entry/" + appid).then(({ data }) => {
-            setEntryData(data[0])
-        })
-    }
+    const { data, isLoading } = useGetApplication(appid)
+    const { updateApplication, updateResponse } = useUpdateApplication()
 
     useEffect(() => {
         if (appid != "new") {
-            getData()
+            if (!isLoading) {
+                setEntryData(data)
+            }
         }
-    }, [])
+    }, [data, isLoading])
 
-    function sendData() {
-        axios
-            .post(SERVER_URL + "update/" + appid, entryData)
-            .then(({ data }) => {
-                console.log(data.response)
-                if (data.response == "ok") {
-                    window.location.href = "/applications"
-                }
-                // else toast/popup with an error
-            })
-    }
+    useEffect(() => {
+        if (updateResponse == "ok") {
+            console.log(updateResponse)
+            window.location.href = "/applications"
+        }
+    }, [updateResponse])
 
     function cancelEdit() {
         window.location.href = "/applications"
     }
+
+    if (appid != "new" && isLoading) return <h2>Loading...</h2>
 
     return (
         <>
@@ -241,7 +226,12 @@ export function Edit() {
                         ></textarea>
                     </div>
                     <div className="edit-buttons">
-                        <button type="button" onClick={sendData}>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                updateApplication(appid, entryData)
+                            }}
+                        >
                             Save
                         </button>
                         <button
