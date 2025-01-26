@@ -4,6 +4,7 @@ import { HiOutlineBell, HiPlus, HiSearch } from "react-icons/hi"
 import { Link, useNavigate } from "react-router"
 import { SERVER_URL } from "../util/server"
 import { applicationData } from "../types/applications.types"
+import { Toaster } from "react-hot-toast"
 
 export function Header() {
     const navigate = useNavigate()
@@ -71,6 +72,7 @@ export function Header() {
     return (
         <>
             <header>
+                <Toaster />
                 <div className="search">
                     <div className="search-component">
                         <form action="">

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { applicationData } from "../types/applications.types"
 import { SERVER_URL } from "../util/server"
 import { useGetApplication } from "../hooks/useGetApplication"
 import { useUpdateApplication } from "../hooks/useUpdateApplication"
+import toast from "react-hot-toast"
 
 export function Edit() {
     const { appid } = useParams()
+    const navigate = useNavigate()
     const [entryData, setEntryData] = useState<applicationData>({})
 
     const { data, isLoading } = useGetApplication(appid || "")
@@ -22,13 +24,14 @@ export function Edit() {
 
     useEffect(() => {
         if (updateResponse == "ok") {
-            console.log(updateResponse)
-            window.location.href = "/applications"
+            toast.success("Application updated")
+            navigate("/applications")
         }
     }, [updateResponse])
 
     function cancelEdit() {
-        window.location.href = "/applications"
+        toast.error("Edit cancelled")
+        navigate("/applications")
     }
 
     if (appid != "new" && isLoading) return <h2>Loading...</h2>
