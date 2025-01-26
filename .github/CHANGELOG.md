@@ -5,6 +5,7 @@
 1. Bugfixes and code improvements
 1. Added search functionality
 1. Added interviews to Dashboard calendar
+1. Added toasts when adding, editing or deleting data
 
 ## v0.1.0
 
