@@ -9,7 +9,7 @@ export function Edit() {
     const { appid } = useParams()
     const [entryData, setEntryData] = useState<applicationData>({})
 
-    const { data, isLoading } = useGetApplication(appid)
+    const { data, isLoading } = useGetApplication(appid || "")
     const { updateApplication, updateResponse } = useUpdateApplication()
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export function Edit() {
                 setEntryData(data)
             }
         }
-    }, [data, isLoading])
+    }, [appid, data, isLoading])
 
     useEffect(() => {
         if (updateResponse == "ok") {
@@ -229,7 +229,7 @@ export function Edit() {
                         <button
                             type="button"
                             onClick={() => {
-                                updateApplication(appid, entryData)
+                                updateApplication(appid || "", entryData)
                             }}
                         >
                             Save
