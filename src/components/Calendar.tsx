@@ -16,7 +16,7 @@ export function Schedule() {
                     html: `<div><h3>${data[i].title}</h3><p>${data[i].company}</p></div>`,
                 }
             }
-            console.log(dates)
+            // console.log(dates)
             setInterviewDates(dates)
         })
     }
