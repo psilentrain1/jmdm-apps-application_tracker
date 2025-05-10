@@ -1,4 +1,3 @@
-import axios from "axios"
 import { SERVER_URL } from "../util/server"
 import { aag } from "../types/applications.types"
 import {
@@ -11,9 +10,13 @@ import {
 import { useEffect } from "react"
 
 export function AtAGlance() {
-    function getAAGData() {
-        const weekCount = document.getElementById("aag__apps__week")
-        const monthCount = document.getElementById("aag__apps__month")
+    async function getAAGData() {
+        const weekCount = document.getElementById(
+            "aag__apps__week"
+        ) as HTMLSpanElement
+        const monthCount = document.getElementById(
+            "aag__apps__month"
+        ) as HTMLSpanElement
         const today = new Date()
 
         const aag: aag = {
@@ -27,10 +30,24 @@ export function AtAGlance() {
             monthend: formatISO(endOfMonth(today), { representation: "date" }),
         }
 
-        axios.post(SERVER_URL + "aag/", aag).then(({ data }) => {
-            weekCount.innerText = data[0]
-            monthCount.innerText = data[1]
-        })
+        try {
+            const response = await fetch(`${SERVER_URL}aag/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(aag),
+            })
+            if (!response.ok) {
+                throw new Error("Network response was not ok")
+            }
+            const aagData = await response.json()
+
+            weekCount.innerText = aagData[0]
+            monthCount.innerText = aagData[1]
+        } catch (error) {
+            console.error("Error fetching AAG data:", error)
+        }
     }
 
     useEffect(() => {
