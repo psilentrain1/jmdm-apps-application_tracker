@@ -52,7 +52,7 @@ export function AtAGlance() {
 
     useEffect(() => {
         getAAGData()
-    })
+    }, [])
 
     return (
         <>
