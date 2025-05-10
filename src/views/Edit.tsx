@@ -9,7 +9,18 @@ import toast from "react-hot-toast"
 export function Edit() {
     const { appid } = useParams()
     const navigate = useNavigate()
-    const [entryData, setEntryData] = useState<applicationData>({})
+    const [entryData, setEntryData] = useState<applicationData>({
+        title: "",
+        company: "",
+        location: "",
+        type: "On Prem",
+        industry: "",
+        status: "Applied",
+        apply_date: "",
+        interview_date: "",
+        reject_date: "",
+        notes: "",
+    })
 
     const { data, isLoading } = useGetApplication(appid || "")
     const { updateApplication, updateResponse } = useUpdateApplication()
@@ -58,7 +69,7 @@ export function Edit() {
                                     type="text"
                                     name="title"
                                     id="title"
-                                    value={entryData.title}
+                                    value={entryData.title || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -76,7 +87,7 @@ export function Edit() {
                                     type="text"
                                     name="company"
                                     id="company"
-                                    value={entryData.company}
+                                    value={entryData.company || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -92,7 +103,7 @@ export function Edit() {
                                     type="text"
                                     name="location"
                                     id="location"
-                                    value={entryData.location}
+                                    value={entryData.location || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -128,7 +139,7 @@ export function Edit() {
                                     type="text"
                                     name="industry"
                                     id="industry"
-                                    value={entryData.industry}
+                                    value={entryData.industry || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -168,7 +179,7 @@ export function Edit() {
                                     type="date"
                                     name="apply_date"
                                     id="apply_date"
-                                    value={entryData.apply_date}
+                                    value={entryData.apply_date || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -185,7 +196,7 @@ export function Edit() {
                                     type="date"
                                     name="interview_date"
                                     id="interview_date"
-                                    value={entryData.interview_date}
+                                    value={entryData.interview_date || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -202,7 +213,7 @@ export function Edit() {
                                     type="date"
                                     name="reject_date"
                                     id="reject_date"
-                                    value={entryData.reject_date}
+                                    value={entryData.reject_date || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
