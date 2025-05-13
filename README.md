@@ -4,10 +4,6 @@
 
 _Application Tracker_ is a simple app to track job applications submitted.
 
-_Note:_
-
-## Getting Started
-
 ## Future Plans
 
 -   Pagination on the application display
