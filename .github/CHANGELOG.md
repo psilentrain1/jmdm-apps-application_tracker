@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.2.1
+
+1. Added documentation
+1. Bug fixes and stability improvements
+
 ## v0.2.0
 
 1. Bugfixes and code improvements
