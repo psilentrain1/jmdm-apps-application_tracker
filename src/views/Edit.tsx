@@ -1,52 +1,51 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { applicationData } from "../types/applications.types"
 import { SERVER_URL } from "../util/server"
+import { useGetApplication } from "../hooks/useGetApplication"
+import { useUpdateApplication } from "../hooks/useUpdateApplication"
+import toast from "react-hot-toast"
 
 export function Edit() {
     const { appid } = useParams()
+    const navigate = useNavigate()
     const [entryData, setEntryData] = useState<applicationData>({
-        id: 0,
         title: "",
         company: "",
         location: "",
-        type: "",
+        type: "On Prem",
         industry: "",
-        status: "",
+        status: "Applied",
         apply_date: "",
         interview_date: "",
         reject_date: "",
         notes: "",
     })
 
-    function getData() {
-        axios.get(SERVER_URL + "entry/" + appid).then(({ data }) => {
-            setEntryData(data[0])
-        })
-    }
+    const { data, isLoading } = useGetApplication(appid || "")
+    const { updateApplication, updateResponse } = useUpdateApplication()
 
     useEffect(() => {
         if (appid != "new") {
-            getData()
+            if (!isLoading) {
+                setEntryData(data)
+            }
         }
-    }, [])
+    }, [appid, data, isLoading])
 
-    function sendData() {
-        axios
-            .post(SERVER_URL + "update/" + appid, entryData)
-            .then(({ data }) => {
-                console.log(data.response)
-                if (data.response == "ok") {
-                    window.location.href = "/applications"
-                }
-                // else toast/popup with an error
-            })
-    }
+    useEffect(() => {
+        if (updateResponse == "ok") {
+            toast.success("Application updated")
+            navigate("/applications")
+        }
+    }, [updateResponse])
 
     function cancelEdit() {
-        window.location.href = "/applications"
+        toast.error("Edit cancelled")
+        navigate("/applications")
     }
+
+    if (appid != "new" && isLoading) return <h2>Loading...</h2>
 
     return (
         <>
@@ -70,7 +69,7 @@ export function Edit() {
                                     type="text"
                                     name="title"
                                     id="title"
-                                    value={entryData.title}
+                                    value={entryData.title || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -88,7 +87,7 @@ export function Edit() {
                                     type="text"
                                     name="company"
                                     id="company"
-                                    value={entryData.company}
+                                    value={entryData.company || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -104,7 +103,7 @@ export function Edit() {
                                     type="text"
                                     name="location"
                                     id="location"
-                                    value={entryData.location}
+                                    value={entryData.location || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -140,7 +139,7 @@ export function Edit() {
                                     type="text"
                                     name="industry"
                                     id="industry"
-                                    value={entryData.industry}
+                                    value={entryData.industry || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -180,7 +179,7 @@ export function Edit() {
                                     type="date"
                                     name="apply_date"
                                     id="apply_date"
-                                    value={entryData.apply_date}
+                                    value={entryData.apply_date || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -197,7 +196,7 @@ export function Edit() {
                                     type="date"
                                     name="interview_date"
                                     id="interview_date"
-                                    value={entryData.interview_date}
+                                    value={entryData.interview_date || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -214,7 +213,7 @@ export function Edit() {
                                     type="date"
                                     name="reject_date"
                                     id="reject_date"
-                                    value={entryData.reject_date}
+                                    value={entryData.reject_date || ""}
                                     onChange={(e) =>
                                         setEntryData({
                                             ...entryData,
@@ -241,7 +240,12 @@ export function Edit() {
                         ></textarea>
                     </div>
                     <div className="edit-buttons">
-                        <button type="button" onClick={sendData}>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                updateApplication(appid || "", entryData)
+                            }}
+                        >
                             Save
                         </button>
                         <button

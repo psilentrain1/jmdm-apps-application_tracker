@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express"
-const express = require("express")
+import express from "express"
 const router = express.Router()
-const applications = require("../services/applications")
+import * as applications from "../services/applications"
 
 // READ
 router.get("/", function (req: Request, res: Response, next: NextFunction) {
@@ -20,6 +20,18 @@ router.get(
             res.json(applications.getEntry(req.params.id))
         } catch (err) {
             console.error("Error while getting entry ", err.message)
+            next(err)
+        }
+    }
+)
+
+router.get(
+    "/search/:q",
+    function (req: Request, res: Response, next: NextFunction) {
+        try {
+            res.json(applications.search(req.params.q))
+        } catch (err) {
+            console.error("Error while searching ", err.message)
             next(err)
         }
     }
@@ -94,4 +106,17 @@ router.get(
     }
 )
 
-module.exports = router
+// CALENDAR
+router.get(
+    "/cal/int",
+    function (req: Request, res: Response, next: NextFunction) {
+        try {
+            res.json(applications.interviews())
+        } catch (err) {
+            console.error("Error while getting interviews ", err.message)
+            next(err)
+        }
+    }
+)
+
+export { router as appRouter }

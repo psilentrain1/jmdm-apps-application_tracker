@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
-const express = require("express")
+import express from "express"
 const app = express()
 const port = 3000
-const appRouter = require("./routes/application.route")
-const cors = require("cors")
+import { appRouter } from "./routes/application.route"
+import cors from "cors"
 
 app.use(cors())
 app.use(express.json())

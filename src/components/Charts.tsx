@@ -1,4 +1,9 @@
 import { AgCharts } from "ag-charts-react"
+import {
+    AgLineSeriesOptions,
+    AgBarSeriesOptions,
+    AgPieSeriesOptions,
+} from "ag-charts-community"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { SERVER_URL } from "../util/server"
@@ -7,7 +12,11 @@ export function Charts() {
     const [chart_AppByIndustry, setChart_AppByIndustry] = useState({
         data: [],
         series: [
-            { type: "pie", angleKey: "COUNT(id)", sectorLabelKey: "industry" },
+            {
+                type: "pie",
+                angleKey: "COUNT(id)",
+                sectorLabelKey: "industry",
+            } as AgPieSeriesOptions,
         ],
         title: {
             text: "Applications by Industry",
@@ -17,7 +26,11 @@ export function Charts() {
     const [chart_AppSubsByTitle, setChart_AppSubsByTitle] = useState({
         data: [],
         series: [
-            { type: "pie", angleKey: "COUNT(id)", sectorLabelKey: "title" },
+            {
+                type: "pie",
+                angleKey: "COUNT(id)",
+                sectorLabelKey: "title",
+            } as AgPieSeriesOptions,
         ],
         title: {
             text: "Applications by Job Title",
@@ -26,7 +39,13 @@ export function Charts() {
 
     const [chart_AppSubsByType, setChart_AppSubsByType] = useState({
         data: [],
-        series: [{ type: "bar", xKey: "type", yKey: "COUNT(id)" }],
+        series: [
+            {
+                type: "bar",
+                xKey: "type",
+                yKey: "COUNT(id)",
+            } as AgBarSeriesOptions,
+        ],
         title: {
             text: "Applications by Job Type",
         },
@@ -44,7 +63,7 @@ export function Charts() {
                 marker: {
                     fill: "orange",
                 },
-            },
+            } as AgLineSeriesOptions,
             {
                 type: "line",
                 xKey: "dates",
@@ -55,7 +74,7 @@ export function Charts() {
                     fill: "green",
                     shape: "square",
                 },
-            },
+            } as AgLineSeriesOptions,
             {
                 type: "line",
                 xKey: "dates",
@@ -66,7 +85,7 @@ export function Charts() {
                     fill: "red",
                     shape: "triangle",
                 },
-            },
+            } as AgLineSeriesOptions,
         ],
         title: {
             text: "Application History",

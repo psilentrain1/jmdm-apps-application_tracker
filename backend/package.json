@@ -1,6 +1,6 @@
 {
     "name": "application_tracker-backend",
-    "version": "0.1.0",
+    "version": "0.2.1",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,6 +20,7 @@
     },
     "devDependencies": {
         "@types/better-sqlite3": "^7.6.12",
+        "@types/cors": "^2.8.17",
         "@types/express": "^5.0.0",
         "@types/node": "^22.10.7",
         "ts-node": "^10.9.2",

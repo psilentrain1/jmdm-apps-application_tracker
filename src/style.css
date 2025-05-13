@@ -181,6 +181,11 @@ header {
     width: 85%;
 }
 
+.search-component {
+    position: relative;
+    box-sizing: border-box;
+}
+
 .search form {
     display: flex;
     flex-direction: row;
@@ -203,6 +208,52 @@ header {
     font-size: 1.5rem;
     transform: translateX(-50px);
     color: var(--clr-gray-500);
+}
+
+.search-results {
+    display: none;
+    position: absolute;
+    min-width: 350px;
+    min-height: 25px;
+    border: 1px solid var(--clr-gray-300);
+    border-radius: var(--radius);
+    transform: translate(415px, 5px);
+    z-index: 1;
+    background-color: var(--clr-gray-100);
+}
+
+.result {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid var(--clr-primary-950);
+}
+
+.result__title {
+}
+
+.result__title a,
+.result__title a:visited,
+.result__title a:active {
+    color: var(--txt-black);
+}
+
+.result__title a:hover {
+    color: var(--clr-primary-600);
+}
+
+.result__company {
+    font-size: 0.7rem;
+    color: var(--clr-gray-600);
+}
+
+.no-result {
+    padding: 10px 0;
+    color: var(--clr-gray-600);
+}
+
+.show-results {
+    display: block;
 }
 
 header .buttons {
@@ -708,6 +759,10 @@ footer a:hover {
 
 .calendar__weekDay[data-vc-week-day-off] {
     color: var(--clr-secondary-500);
+}
+
+.calendar__interview {
+    background-color: var(--clr-primary-800);
 }
 
 /* -------- */
