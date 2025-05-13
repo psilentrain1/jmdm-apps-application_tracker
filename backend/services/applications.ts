@@ -151,7 +151,7 @@ function search(query: string) {
 // calendar queries
 function interviews() {
     const data = db.query(
-        `SELECT id, interview_date, title, company FROM applications WHERE interview_date NOT NULL ORDER BY interview_date;`
+        `SELECT id, interview_date, title, company FROM applications WHERE interview_date IS NOT NULL ORDER BY interview_date;`
     )
     return data
 }
